@@ -1,4 +1,38 @@
 
+<!-- identity-block -->
+<div align="center">
+
+# devhub-modernized
+
+<sub>Reference mirror of Databricks DevHub documentation and templates for data and AI developers.</sub>
+
+</div>
+
+## At a glance
+
+| Field | Detail |
+| --- | --- |
+| Repository | devhub-modernized |
+| Primary language | TypeScript |
+| Topics | ai, data-engineering, databricks, documentation, markdown, reference, typescript |
+| License | NOASSERTION |
+| Branch | main |
+| Maintainer | [@devarent](https://github.com/devarent) |
+
+## Overview
+
+devhub-modernized is a hands-on repository focused on: Reference mirror of Databricks DevHub documentation and templates for data and AI developers.. Primary language: TypeScript. Topics: ai, data-engineering, databricks, documentation, markdown, reference, typescript. The README below documents the project; use the table above for a quick overview.
+
+### Global references
+
+<div align="center">
+
+🇮🇸 Iceland &middot; 🇳🇿 New Zealand &middot; 🇨🇭 Switzerland &middot; 🇸🇮 Slovenia &middot; 🇮🇪 Ireland &middot; 🇦🇹 Austria &middot; 🇵🇹 Portugal &middot; 🇸🇬 Singapore &middot; 🇫🇮 Finland
+
+</div>
+
+---
+
 <!-- dbx-style-kit -->
 <div align="center">
 
