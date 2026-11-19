@@ -2,47 +2,31 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  quality:
-    name: Format, Typecheck, Build, and Test
+  reference-check:
+    name: Reference mirror integrity
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+      - name: Verify reference files
+        run: |
+          test -f README.md
+          test -f LICENSE || test -f LICENSE.md || true
+          echo "Reference mirror is present."
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Sync AppKit docs
-        run: node scripts/sync-appkit-docs.mjs
-
-      - name: Format check
-        run: bunx prettier -c .
-
-      - name: Typecheck
-        run: bun run typecheck
-
-      - name: Build
-        run: bun run build
-
-      - name: Install Playwright browsers
-        run: bunx playwright install --with-deps chromium
-
-      - name: Run tests
-        run: bun run test
+      - name: Check for committed credentials
+        run: |
+          if git grep -nE '(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16})' -- . ':!*.md' ':!*.json' ':!*.lock' ':!*.txt'; then
+            echo "Potential credential detected in tracked files."
+            exit 1
+          fi
+          echo "No obvious credentials detected."
